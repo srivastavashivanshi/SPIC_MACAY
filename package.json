@@ -1,0 +1,27 @@
+{
+  "name": "spicmacay-iiml",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "db:seed": "node --env-file-if-exists=.env scripts/seed.mjs",
+    "import:spicmacay": "node scripts/import-spicmacay.mjs",
+    "import:appearances": "node scripts/import-appearances.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.0.0",
+    "@vercel/blob": "2.8.1",
+    "leaflet": "1.9.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-leaflet": "4.2.1",
+    "react-router-dom": "6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "5.4.11"
+  }
+}
