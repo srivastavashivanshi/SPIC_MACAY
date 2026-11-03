@@ -1,0 +1,101 @@
+// Instrument guide. Part points (x, y) are positions on the 480×240 drawings in InstrumentArt.jsx.
+export const instruments = [
+  {
+    id: 'sitar', name: 'Sitar', hi: 'सितार', family: 'Plucked strings', artForm: 'hindustani-instrumental',
+    summary: 'A long-necked lute with curved, movable frets and a second set of strings that ring in sympathy.',
+    parts: [
+      { id: 'tumba', name: 'Tumba', desc: 'The main resonator, made from a dried gourd.', x: 62, y: 170 },
+      { id: 'tabli', name: 'Tabli', desc: 'The wooden soundboard covering the gourd.', x: 118, y: 160 },
+      { id: 'jawari', name: 'Jawari (bridge)', desc: 'A wide, flat bridge that makes the strings buzz and shimmer.', x: 103, y: 122 },
+      { id: 'dand', name: 'Dand (neck)', desc: 'The long hollow neck that carries the frets.', x: 335, y: 121 },
+      { id: 'parda', name: 'Parde (frets)', desc: 'Curved metal frets, tied on so they can be moved to tune the scale. Players pull the string across them to bend notes (meend).', x: 241, y: 104 },
+      { id: 'taraf', name: 'Tarab strings', desc: 'Sympathetic strings under the frets, tuned to the raga, that ring when the main strings are played.', x: 262, y: 140 },
+      { id: 'tumbi', name: 'Tumbi', desc: 'A smaller resonator near the top of the neck.', x: 395, y: 152 },
+      { id: 'khunti', name: 'Khunti (pegs)', desc: 'Wooden tuning pegs.', x: 456, y: 99 },
+    ],
+  },
+  {
+    id: 'sarod', name: 'Sarod', hi: 'सरोद', family: 'Plucked strings', artForm: 'hindustani-instrumental',
+    summary: 'A fretless lute with a metal fingerboard and a skin soundboard, plucked with a plectrum made of coconut shell.',
+    parts: [
+      { id: 'bowl', name: 'Wooden body', desc: 'A hollowed, pear-shaped body carved from one piece of wood.', x: 44, y: 152 },
+      { id: 'skin', name: 'Skin soundboard', desc: 'Goatskin stretched over the body, which gives the sarod its deep, resonant voice.', x: 74, y: 152 },
+      { id: 'bridge', name: 'Bridge', desc: 'Sits on the skin and carries the vibration of the strings into it.', x: 100, y: 118 },
+      { id: 'board', name: 'Metal fingerboard', desc: 'A smooth, fretless steel plate. Players slide along it with their fingernails for glides between notes.', x: 290, y: 128 },
+      { id: 'java', name: 'Java (plectrum)', desc: 'A triangular plectrum, traditionally made of coconut shell.', x: 125, y: 168 },
+      { id: 'pegs', name: 'Pegs', desc: 'Tuning pegs for the main, drone and sympathetic strings.', x: 428, y: 104 },
+      { id: 'dome', name: 'Metal resonator', desc: 'A small metal bowl behind the pegbox that adds resonance.', x: 470, y: 124 },
+    ],
+  },
+  {
+    id: 'tabla', name: 'Tabla', hi: 'तबला', family: 'Drums', artForm: 'percussion',
+    summary: 'A pair of hand drums: the wooden dayan for the right hand and the metal bayan for the left.',
+    parts: [
+      { id: 'dayan', name: 'Dayan', desc: 'The right-hand drum, carved from wood and tuned to Sa of the performance.', x: 325, y: 194 },
+      { id: 'bayan', name: 'Bayan', desc: 'The left-hand bass drum, usually of metal. Pressing with the palm bends its pitch.', x: 140, y: 170 },
+      { id: 'syahi', name: 'Syahi', desc: 'The black spot: layers of a paste of iron filings, starch and gum that give the tabla its ringing tone.', x: 325, y: 78 },
+      { id: 'kinar', name: 'Kinar', desc: 'The outer ring of skin, struck for sharp sounds like “Na”.', x: 366, y: 82 },
+      { id: 'gajra', name: 'Gajra', desc: 'The braided leather rim that holds the skin; tapping it fine-tunes the drum.', x: 276, y: 80 },
+      { id: 'baddhi', name: 'Baddhi (straps)', desc: 'Leather straps that hold the skin taut.', x: 296, y: 128 },
+      { id: 'gatte', name: 'Gatte', desc: 'Wooden blocks under the straps, moved up or down to tune.', x: 336, y: 166 },
+    ],
+  },
+  {
+    id: 'veena', name: 'Saraswati veena', hi: 'सरस्वती वीणा', family: 'Plucked strings', artForm: 'carnatic-instrumental',
+    summary: 'The classical veena of South India, with 24 fixed frets set in wax and a carved dragon head.',
+    parts: [
+      { id: 'kudam', name: 'Kudam', desc: 'The large main resonator, carved from jackfruit wood.', x: 58, y: 172 },
+      { id: 'bridge', name: 'Bridge', desc: 'Carries the four playing strings over the resonator.', x: 101, y: 122 },
+      { id: 'dandi', name: 'Dandi (neck)', desc: 'The hollow neck.', x: 280, y: 124 },
+      { id: 'frets', name: 'Frets', desc: '24 brass frets set in black wax, which allows deep note-bending.', x: 240, y: 108 },
+      { id: 'strings', name: 'Strings', desc: 'Four playing strings, plus three side strings for drone and rhythm (talam).', x: 200, y: 116 },
+      { id: 'gourd', name: 'Supporting resonator', desc: 'A smaller resonator under the neck that supports the instrument on the player’s knee.', x: 370, y: 172 },
+      { id: 'yali', name: 'Yali', desc: 'The carved head of a mythical creature at the end of the neck.', x: 452, y: 88 },
+    ],
+  },
+  {
+    id: 'bansuri', name: 'Bansuri', hi: 'बाँसुरी', family: 'Wind', artForm: 'hindustani-instrumental',
+    summary: 'A side-blown flute made from a single length of bamboo, with no keys.',
+    parts: [
+      { id: 'cork', name: 'Closed end', desc: 'The end beyond the blow hole is stopped with cork or wax.', x: 26, y: 115 },
+      { id: 'blow', name: 'Blow hole', desc: 'The player blows across this hole, as across a bottle.', x: 75, y: 115 },
+      { id: 'tube', name: 'Bamboo tube', desc: 'A single piece of bamboo; its length and width set the pitch of Sa.', x: 180, y: 122 },
+      { id: 'holes', name: 'Finger holes', desc: 'Usually six; half-covering a hole gives the komal (flat) notes and slides.', x: 318, y: 115 },
+      { id: 'open', name: 'Open end', desc: 'The far end is open.', x: 456, y: 115 },
+    ],
+  },
+  {
+    id: 'tanpura', name: 'Tanpura', hi: 'तानपुरा', family: 'Drone', artForm: 'hindustani-vocal',
+    summary: 'A long-necked, unfretted lute played open to give the continuous drone behind a performance.',
+    parts: [
+      { id: 'tumba', name: 'Tumba', desc: 'The gourd resonator.', x: 66, y: 178 },
+      { id: 'manka', name: 'Manka (beads)', desc: 'Beads on each string near the base, slid to fine-tune.', x: 50, y: 122 },
+      { id: 'jawari', name: 'Jawari (bridge)', desc: 'A flat bridge that gives each string its rich, buzzing tone.', x: 100, y: 108 },
+      { id: 'jiva', name: 'Jiva (threads)', desc: 'Cotton threads placed between the strings and the bridge; moving them adjusts the buzz.', x: 130, y: 140 },
+      { id: 'strings', name: 'Strings', desc: 'Usually four, often tuned Pa–Sa–Sa–low Sa, plucked one after another without stopping.', x: 220, y: 118 },
+      { id: 'dand', name: 'Dand (neck)', desc: 'The long neck, with no frets.', x: 320, y: 124 },
+      { id: 'khunti', name: 'Khunti (pegs)', desc: 'Tuning pegs.', x: 456, y: 100 },
+    ],
+  },
+  {
+    id: 'mridangam', name: 'Mridangam', hi: 'मृदंगम्', family: 'Drums', artForm: 'percussion',
+    summary: 'The double-headed barrel drum of Carnatic music, played on both sides.',
+    parts: [
+      { id: 'thoppi', name: 'Thoppi (left head)', desc: 'The bass head; a little wet paste is applied before playing for a deep tone.', x: 76, y: 125 },
+      { id: 'valanthalai', name: 'Valanthalai (right head)', desc: 'The treble head, tuned to the performer’s Sa.', x: 412, y: 98 },
+      { id: 'karanai', name: 'Black spot', desc: 'A permanent black paste on the right head that gives clear, ringing strokes.', x: 400, y: 125 },
+      { id: 'body', name: 'Body', desc: 'A hollow barrel, traditionally carved from jackfruit wood.', x: 240, y: 186 },
+      { id: 'straps', name: 'Leather straps', desc: 'Straps running between the two heads keep them taut.', x: 240, y: 92 },
+    ],
+  },
+  {
+    id: 'shehnai', name: 'Shehnai', hi: 'शहनाई', family: 'Wind', artForm: 'hindustani-instrumental',
+    summary: 'A double-reed wind instrument, long played at weddings and temples, brought to the concert stage by Ustad Bismillah Khan.',
+    parts: [
+      { id: 'reed', name: 'Double reed', desc: 'Two thin blades of reed vibrate against each other when blown.', x: 34, y: 116 },
+      { id: 'tube', name: 'Wooden tube', desc: 'A conical tube that widens towards the bell.', x: 200, y: 116 },
+      { id: 'holes', name: 'Finger holes', desc: 'Covered and half-covered to play the notes and glides.', x: 255, y: 112 },
+      { id: 'bell', name: 'Metal bell', desc: 'The flared end that projects the sound.', x: 440, y: 116 },
+    ],
+  },
+];
