@@ -21,6 +21,8 @@ function marksByBeat(tala) {
   return m;
 }
 
+const isIOS = () => typeof navigator !== 'undefined' && (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+
 export default function Talas() {
   const t = useT();
   const { lang } = useLang();
@@ -85,6 +87,7 @@ export default function Talas() {
           ))}
         </div>
 
+        {isIOS() && <p className="ios-note">{t('audio.ios')}</p>}
         <article className="card tala-card has-motif">
           <Motif name="tabla" className="lg" />
           <div className="tala-layout">
@@ -131,6 +134,16 @@ export default function Talas() {
                 <Term entry={term('vibhag')}>Vibhags</Term>: {tala.vibhags.join(' + ')} · X = <Term entry={term('sam')}>sam</Term> · 0 ={' '}
                 <Term entry={term('khali')}>khali</Term>
               </p>
+              <div className="raga-controls">
+                <button className="btn btn-maroon" onClick={() => (playing ? stop() : setPlaying(true))}>
+                  {playing ? `■ ${t('talas.stop')}` : `▶ ${t('talas.play')}`}
+                </button>
+                <label className="inline-label tempo">
+                  {t('talas.tempo')}
+                  <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(Number(e.target.value))} />
+                  <span>{bpm} BPM</span>
+                </label>
+              </div>
               <div className="theka-grid">
                 {tala.vibhags.map((len, vi) => {
                   const start = tala.vibhags.slice(0, vi).reduce((a, b) => a + b, 0);
@@ -145,16 +158,6 @@ export default function Talas() {
                     </div>
                   );
                 })}
-              </div>
-              <div className="raga-controls">
-                <button className="btn btn-maroon" onClick={() => (playing ? stop() : setPlaying(true))}>
-                  {playing ? `■ ${t('talas.stop')}` : `▶ ${t('talas.play')}`}
-                </button>
-                <label className="inline-label tempo">
-                  {t('talas.tempo')}
-                  <input type="range" min="40" max="240" value={bpm} onChange={(e) => setBpm(Number(e.target.value))} />
-                  <span>{bpm} BPM</span>
-                </label>
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ export default function Layout() {
   const [open, setOpen] = useState(false);
   const [learnOpen, setLearnOpen] = useState(false);
   const learnRef = useRef(null);
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const { fromDatabase } = useData();
   const { lang, setLang, t } = useLang();
   const { theme, cycle } = useTheme();
@@ -57,6 +57,22 @@ export default function Layout() {
     setLearnOpen(false);
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  // Lock page scrolling behind the open mobile menu.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  // Swipeable tab rows on phones: bring the selected tab into view.
+  useEffect(() => {
+    document.querySelectorAll('.tabs').forEach((row) => {
+      const on = row.querySelector('[aria-pressed="true"], [aria-selected="true"]');
+      if (on && row.scrollWidth > row.clientWidth) row.scrollLeft = on.offsetLeft - row.clientWidth / 2 + on.clientWidth / 2;
+    });
+  }, [pathname, search]);
 
   useEffect(() => {
     if (!open && !learnOpen) return;
@@ -112,7 +128,7 @@ export default function Layout() {
               <button className={learnActive ? 'active' : ''} aria-expanded={learnOpen} aria-haspopup="true" onClick={() => setLearnOpen((o) => !o)}>
                 {t('nav.learn')} <span aria-hidden="true">▾</span>
               </button>
-              <div className="nav-menu" role="menu">
+              <div className="nav-menu" role="menu" data-label={t('nav.learn')}>
                 {learn.map((l) => (
                   <NavLink key={l.to} to={l.to} role="menuitem">
                     {t(l.key)}

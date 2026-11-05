@@ -28,6 +28,8 @@ function NoteChip({ token, active, lang }) {
   );
 }
 
+const isIOS = () => typeof navigator !== 'undefined' && (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+
 export default function Ragas() {
   const t = useT();
   const { lang } = useLang();
@@ -86,6 +88,7 @@ export default function Ragas() {
           ))}
         </div>
 
+        {isIOS() && <p className="ios-note">{t('audio.ios')}</p>}
         <article className="card raga-card has-motif">
           <Motif name="tanpura" className="lg" />
           <div className="raga-head">

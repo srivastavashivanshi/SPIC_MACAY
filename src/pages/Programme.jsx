@@ -52,6 +52,12 @@ export default function Programme() {
     try {
       const { makePoster } = await import('../lib/poster.js');
       const blob = await makePoster({ event: { ...event, artist: artistName }, formName: form ? form.name : '', chapterName: chapter?.name ?? 'IIM Lucknow', url });
+      const file = new File([blob], `spicmacay-${event.id}.png`, { type: 'image/png' });
+      // On phones, open the share sheet so the poster can go straight to WhatsApp or Photos.
+      if (navigator.canShare?.({ files: [file] }) && window.matchMedia?.('(pointer: coarse)').matches) {
+        await navigator.share({ files: [file], title: event.title }).catch(() => {});
+        return;
+      }
       const href = URL.createObjectURL(blob);
       const a = Object.assign(document.createElement('a'), { href, download: `spicmacay-${event.id}.png` });
       document.body.append(a);

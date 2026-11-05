@@ -99,6 +99,7 @@ export default function Conventions() {
               onSelect={select}
               focus={selected ? { lat: selected.lat, lng: selected.lng, zoom: 6 } : null}
               focusKey={selectedId}
+              lockLabel={t('map.unlock')}
             />
           </div>
           <ol className="conv-list">

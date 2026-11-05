@@ -43,6 +43,36 @@ function OfficialBoundary() {
   );
 }
 
+// Maps embedded in long pages stay still until tapped (touch) or clicked (mouse), so
+// scrolling past them with one finger or the mouse wheel moves the page, not the map.
+const isTouch = () => window.matchMedia?.('(pointer: coarse)').matches;
+
+function ScrollLock({ label }) {
+  const map = useMap();
+  const [locked, setLocked] = useState(true);
+  useEffect(() => {
+    if (!locked) {
+      map.dragging.enable();
+      map.scrollWheelZoom.enable();
+      return undefined;
+    }
+    map.scrollWheelZoom.disable();
+    if (!isTouch()) {
+      const unlock = () => setLocked(false);
+      map.once('click focus', unlock);
+      return () => map.off('click focus', unlock);
+    }
+    map.dragging.disable();
+    return undefined;
+  }, [locked, map]);
+  if (!locked || !isTouch()) return null;
+  return (
+    <button className="map-lock" onClick={() => setLocked(false)}>
+      <span>{label}</span>
+    </button>
+  );
+}
+
 // The chapter pin echoes the SPIC MACAY emblem: a yellow almond with a red bindu.
 const homeIcon = L.divIcon({
   className: 'home-pin',
@@ -65,7 +95,7 @@ function Focus({ focus, focusKey }) {
 }
 
 // points: [{ id, lat, lng, label, radius, color }]; route: optional [[lat, lng], …] drawn as a dashed path.
-export default function IndiaMap({ points, home, selectedId, onSelect, onHomeClick, focus, focusKey = '', route }) {
+export default function IndiaMap({ points, home, selectedId, onSelect, onHomeClick, focus, focusKey = '', route, lockLabel }) {
   return (
     <MapContainer bounds={INDIA_BOUNDS} maxBounds={MAX_BOUNDS} minZoom={4} maxZoom={17} scrollWheelZoom
       style={{ height: '100%', width: '100%' }} className="india-map">
@@ -106,6 +136,7 @@ export default function IndiaMap({ points, home, selectedId, onSelect, onHomeCli
         </Marker>
       )}
       <Focus focus={focus} focusKey={focusKey} />
+      {lockLabel && <ScrollLock label={lockLabel} />}
     </MapContainer>
   );
 }

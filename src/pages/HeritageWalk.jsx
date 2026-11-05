@@ -41,6 +41,7 @@ export default function HeritageWalk() {
               route={bounds.slice(0, 6)}
               focus={selected ? { lat: selected.lat, lng: selected.lng, zoom: 16 } : { bounds }}
               focusKey={selectedId || 'all'}
+              lockLabel={t('map.unlock')}
             />
           </div>
           <ol className="heritage-list">
