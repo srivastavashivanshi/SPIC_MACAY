@@ -79,6 +79,17 @@ Add them in Vercel → Project → Settings → Environment Variables, then rede
 
 8. **Access** (owners only): give a person their own admin login. Enter their email and role, then send them the one-time invitation link, which is valid for 7 days, by email or WhatsApp. They set their own password and sign in with email + password. **Admins** can edit everything except access; **owners** can also invite, reset and remove people. Removing someone or resetting their password signs them out immediately. Personal accounts need `DATABASE_URL`; passwords are stored as scrypt hashes in the private `admins` table, which the public API never serves.
 
+You can also create an invitation from your computer, without signing in: put the live site's `DATABASE_URL` in `.env` and run
+
+```bash
+npm run admin:invite -- name@iiml.ac.in --site https://your-site.vercel.app        # admin
+npm run admin:invite -- name@iiml.ac.in --role owner --site https://your-site.vercel.app
+```
+
+It prints the one-time link to send.
+
+Uploaded photos appear in a carousel on the home page (newest first, up to 10), in the Gallery, and on the programme they're tagged with. Programme, artist and team edits show up across the site straight away.
+
 The chapter password (`ADMIN_PASSWORD`) always signs in as an owner, so keep it for a small number of people and give everyone else a personal account.
 
 Sessions last 12 hours, in an HttpOnly, SameSite=Strict cookie. Every write is checked on the server, and input is validated and cleaned before it's stored.
