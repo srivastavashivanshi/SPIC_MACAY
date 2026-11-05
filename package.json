@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "db:seed": "node --env-file-if-exists=.env scripts/seed.mjs",
     "import:spicmacay": "node scripts/import-spicmacay.mjs",
-    "import:appearances": "node scripts/import-appearances.mjs"
+    "import:appearances": "node scripts/import-appearances.mjs",
+    "admin:invite": "node --env-file-if-exists=.env scripts/invite-admin.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "1.0.0",
