@@ -4,6 +4,8 @@ An interactive website about SPIC MACAY (Society for the Promotion of Indian Cla
 
 Ideated and created by **Shivanshi Srivastava**.
 
+**Running the site?** See **[ADMIN_GUIDE.md](ADMIN_GUIDE.md)**: one-time setup in Vercel (database, photo storage, passwords), signing in, uploading photos, editing content and giving volunteers access.
+
 The design follows SPIC MACAY's visual identity. The maroon, logo red, logo yellow and gold come from spicmacay.org and the official logo, and the type is Cormorant Garamond, the serif spicmacay.org uses. The illustrations (Warli-style musicians and dancers, mandalas, a toran border, instrument icons) are hand-drawn SVG in `src/components/Art.jsx`.
 
 ## Features
