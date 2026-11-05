@@ -91,6 +91,10 @@ Do these once, in this order:
 
 ## 5. Everyday tasks
 
+### Using the admin page from your phone
+
+Everything in this guide works from a phone's browser too. Open `https://<your-site>/admin` in Chrome (Android) or Safari (iPhone). When uploading, the **Photos** button lets you pick straight from your phone's gallery or take a new photo. Large phone photos are shrunk automatically before upload.
+
 ### Upload photos
 
 1. Open the **Photos** tab.

@@ -35,6 +35,26 @@ Also on the site: an **art form of the week** on the home page (with a performan
 
 Selections are stored in the URL, so a link like `/map?state=IN-UP` or `/art-forms?form=odissi` can be shared.
 
+## Mobile friendly
+
+The site is a website, not an app: it runs in the phone's browser (Chrome on Android, Safari on iPhone) and nobody needs to install anything. Every page is designed to work on phone screens from 360px wide.
+
+| On phones | How it works |
+|---|---|
+| Menu | Opens from the ☰ button, scrolls if it's taller than the screen, and holds the page still behind it. Learning pages are grouped under a "Learn" heading |
+| Filter tabs | One swipeable row instead of many wrapped lines; the selected tab scrolls into view |
+| Page headers | Compact titles, so the content starts near the top of the screen |
+| Forms | Text is 16px so iPhone doesn't zoom in when you tap a field (sign-up, RSVP, admin) |
+| Glossary terms | Tap a dotted-underlined word; the definition opens as a panel at the bottom of the screen |
+| Maps in long pages | Conventions and Heritage walk maps stay still until you tap "Tap to move the map", so one finger scrolls the page. The Reach Map page is a full map you can pan straight away |
+| Raga and tala players | Play buttons come before the details. On iPhone, a note reminds people to switch off silent mode, which mutes web audio |
+| Posters | "Download poster" opens the phone's share sheet, to send straight to WhatsApp or save to Photos |
+| Touch | No hover effects that stay stuck after a tap; buttons and tags are sized for fingers |
+| iPhone notch and home bar | Content keeps clear of them |
+| Home-screen icon | Optional: "Add to Home Screen" (iPhone) or "Install app" (Android) gives the site a SPIC MACAY icon (`public/manifest.webmanifest`, `public/icon-*.png`, `public/apple-touch-icon.png`) |
+
+To check a change on a phone, open the deployed site on an Android phone and an iPhone, try the menu, a tab row, the sign-up form, a glossary word, the Heritage walk map and the raga player. On a computer, Chrome's device toolbar (DevTools → toggle device) gives a quick preview at phone sizes.
+
 ## Tech stack
 
 - **React 18 + Vite**: frontend
