@@ -1088,3 +1088,28 @@ a.event-title:hover, .table-link:hover { color: var(--accent); text-decoration: 
 .admin-who { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 .invite-banner { flex-direction: column; align-items: stretch; }
 .invite-link { width: 100%; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--card); color: var(--ink); font: 0.85rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* ── Photo carousel ─────────────────────────────────── */
+.carousel { position: relative; overflow: hidden; border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow); background: var(--maroon-night); }
+.carousel-track { display: flex; transition: transform 0.6s ease; }
+@media (prefers-reduced-motion: reduce) { .carousel-track { transition: none; } }
+.carousel-slide { flex: 0 0 100%; margin: 0; aspect-ratio: 16 / 8; }
+.carousel-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.carousel-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap;
+  padding: 3.5rem clamp(1rem, 3vw, 2rem) 2.4rem; background: linear-gradient(transparent, rgb(42 10 18 / 0.88)); color: #fdf3e3;
+}
+.carousel-caption > span { display: grid; gap: 0.2rem; max-width: 60ch; }
+.carousel-caption strong { font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.9rem); color: #fff8ec; line-height: 1.15; }
+.carousel-caption a:not(.btn) { color: #f6d77a; font-size: 0.9rem; }
+.carousel-nav {
+  position: absolute; top: 50%; margin-top: -24px; width: 48px; height: 48px; border-radius: 50%; font-size: 1.8rem; line-height: 1;
+  border: 1px solid rgb(253 243 227 / 0.4); background: rgb(42 10 18 / 0.45); color: #fdf3e3; backdrop-filter: blur(4px);
+}
+.carousel-nav:hover { background: rgb(42 10 18 / 0.7); }
+.carousel-nav.prev { left: 14px; }
+.carousel-nav.next { right: 14px; }
+.carousel-dots { position: absolute; left: 0; right: 0; bottom: 0.8rem; display: flex; justify-content: center; gap: 0.4rem; }
+.carousel-dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; background: rgb(253 243 227 / 0.45); }
+.carousel-dots button.on { background: var(--gold); width: 22px; border-radius: 6px; }
+@media (max-width: 640px) { .carousel-slide { aspect-ratio: 4 / 3; } .carousel-nav { display: none; } }

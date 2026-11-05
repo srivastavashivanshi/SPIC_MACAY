@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { formatDate } from '../lib/format.js';
 
 // A grid of photos that opens a full-screen viewer (arrow keys, Escape, swipe-free buttons).
@@ -64,5 +65,86 @@ export function PhotoGrid({ photos, eventById = {} }) {
         </div>
       )}
     </>
+  );
+}
+
+// Slideshow of recent photos. Auto-advances unless the reader prefers reduced motion,
+// pauses on hover or focus, and supports arrows, dots, keyboard and swipe.
+export function PhotoCarousel({ photos, eventById = {}, interval = 5000, title, moreLink }) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [touchX, setTouchX] = useState(null);
+  const count = photos.length;
+  const go = useCallback((d) => setIndex((i) => (i + d + count) % count), [count]);
+
+  useEffect(() => {
+    if (count < 2 || paused || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const t = setInterval(() => go(1), interval);
+    return () => clearInterval(t);
+  }, [count, paused, interval, go]);
+  useEffect(() => {
+    if (index >= count) setIndex(0);
+  }, [count, index]);
+
+  if (!count) return null;
+  const current = photos[Math.min(index, count - 1)];
+  const event = eventById[current.eventId];
+
+  return (
+    <section
+      className="carousel"
+      aria-roledescription="carousel"
+      aria-label={title}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowRight') go(1);
+        if (e.key === 'ArrowLeft') go(-1);
+      }}
+      onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
+      onTouchEnd={(e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        setTouchX(null);
+      }}
+    >
+      <div className="carousel-track" style={{ transform: `translateX(-${Math.min(index, count - 1) * 100}%)` }}>
+        {photos.map((p, i) => (
+          <figure key={p.id} className="carousel-slide" aria-roledescription="slide" aria-label={`${i + 1} of ${count}`} aria-hidden={i !== index}>
+            <img src={p.url} alt={p.caption || 'Programme photo'} loading={i < 2 ? 'eager' : 'lazy'} />
+          </figure>
+        ))}
+      </div>
+      <div className="carousel-caption" aria-live={paused ? 'polite' : 'off'}>
+        <span>
+          {current.caption && <strong>{current.caption}</strong>}
+          {event && (
+            <Link to={`/programmes/${event.id}`}>
+              {event.title}
+              {current.takenOn ? ` · ${formatDate(current.takenOn)}` : ''}
+            </Link>
+          )}
+        </span>
+        {moreLink}
+      </div>
+      {count > 1 && (
+        <>
+          <button className="carousel-nav prev" onClick={() => go(-1)} aria-label="Previous photo">
+            ‹
+          </button>
+          <button className="carousel-nav next" onClick={() => go(1)} aria-label="Next photo">
+            ›
+          </button>
+          <div className="carousel-dots" role="tablist" aria-label="Choose photo">
+            {photos.map((p, i) => (
+              <button key={p.id} role="tab" aria-selected={i === index} aria-label={`Photo ${i + 1}`} className={i === index ? 'on' : ''} onClick={() => setIndex(i)} />
+            ))}
+          </div>
+        </>
+      )}
+    </section>
   );
 }

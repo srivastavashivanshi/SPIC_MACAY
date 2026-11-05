@@ -9,6 +9,7 @@ import { useT } from '../lib/i18n.jsx';
 import { useLocal } from '../lib/localize.js';
 import { Subscribe, WeeklyArtForm } from '../components/Engage.jsx';
 import GlossaryText from '../components/GlossaryText.jsx';
+import { PhotoCarousel } from '../components/Photos.jsx';
 
 const sections = [
   { to: '/map', title: 'nav.map', text: 'explore.map', Icon: Lotus, motif: 'gateway' },
@@ -23,7 +24,8 @@ const programmes = presenceStates.reduce((n, s) => n + s.programs, 0);
 const statesActive = presenceStates.filter((s) => s.institutions > 0).length;
 
 export default function Home() {
-  const { events } = useData();
+  const { events, gallery } = useData();
+  const eventById = Object.fromEntries(events.map((e) => [e.id, e]));
   const t = useT();
   const local = useLocal();
   useTitle(null);
@@ -84,6 +86,25 @@ export default function Home() {
           </a>
         </p>
       </section>
+
+      {gallery.length > 0 && (
+        <section className="container section">
+          <div className="section-head">
+            <p className="eyebrow">{t('nav.gallery')}</p>
+            <h2>{t('home.photosTitle')}</h2>
+          </div>
+          <PhotoCarousel
+            photos={gallery.slice(0, 10)}
+            eventById={eventById}
+            title={t('home.photosTitle')}
+            moreLink={
+              <Link className="btn btn-gold" to="/gallery">
+                {t('home.photosAll')} →
+              </Link>
+            }
+          />
+        </section>
+      )}
 
       <section className="container section">
         <div className="section-head">
